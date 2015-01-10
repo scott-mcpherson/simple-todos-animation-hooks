@@ -22,6 +22,7 @@ body {
   margin: 0 auto;
   min-height: 100%;
   background: white;
+  overflow: hidden;
 }
 
 header {
@@ -83,6 +84,23 @@ li {
   list-style: none;
   padding: 15px;
   border-bottom: #eee solid 1px;
+  opacity: 1;
+  visibility: visible;
+  background: #fff;
+  transform: translatex(0);
+  transition: all 0.6s;
+}
+.hidden {
+  opacity: 0;
+  background: green;
+  transform: translatex(100%);
+  visibility: hidden;
+}
+.remove {
+  opacity: 0;
+  background: red;
+  transform: translatex(100%);
+  visibility: hidden;
 }
 
 li .text {

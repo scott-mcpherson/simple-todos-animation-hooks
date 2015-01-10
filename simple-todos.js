@@ -40,6 +40,32 @@ if (Meteor.isClient) {
     }
   });
 
+  var EVENTS = 'webkitTransitionEnd oTransitionEnd transitionEnd msTransitionEnd transitionend';
+
+  Template.body.rendered = function () {
+    this.find('#tasks-container')._uihooks = {
+      insertElement: function (node, next) {
+        $(node).addClass('hidden')
+          .insertAfter(next);
+
+        setTimeout(function () {
+          $(node).removeClass('hidden');
+        }, 30);
+
+      },
+      moveElement: function (node, next) {
+
+      },
+      removeElement: function (node) {
+        $(node).addClass('remove')
+          .on( EVENTS, function () {
+            $(node).remove();
+          });
+
+      }
+    }
+  }
+
   Template.task.events({
     "click .toggle-checked": function () {
       // Set the checked property to the opposite of its current value
